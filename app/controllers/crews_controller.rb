@@ -25,11 +25,9 @@ class CrewsController < ApplicationController
 
     respond_to do |format|
       if @crew.save
-        format.html { redirect_to @crew, notice: "Crew was successfully created." }
-        format.json { render :show, status: :created, location: @crew }
+        format.html { redirect_to [@band, @crew], notice: "Crew was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @crew.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,12 +35,10 @@ class CrewsController < ApplicationController
   # PATCH/PUT /crews/1 or /crews/1.json
   def update
     respond_to do |format|
-      if @crew.update(crew_params)
-        format.html { redirect_to @crew, notice: "Crew was successfully updated." }
-        format.json { render :show, status: :ok, location: @crew }
+      if @crew.update(crew_params.merge(band: @band))
+        format.html { redirect_to [@band, @crew], notice: "Crew was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @crew.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,8 +47,7 @@ class CrewsController < ApplicationController
   def destroy
     @crew.destroy
     respond_to do |format|
-      format.html { redirect_to crews_url, notice: "Crew was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to [@band, @crew], notice: "Crew was successfully destroyed." }
     end
   end
 
@@ -68,6 +63,6 @@ class CrewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def crew_params
-      params.require(:crew).permit(:member)
+      params.require(:crew).permit(:members_name)
     end
 end

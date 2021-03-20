@@ -1,4 +1,4 @@
-<%= form_with(model: crew, local: true) do |form| %>
+<%= form_with(model: [@band, crew], local: true) do |form| %>
   <% if crew.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(crew.errors.count, "error") %> prohibited this crew from being saved:</h2>
@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :member %>
-    <%= form.text_field :member %>
+    <%= form.label :members_name %>
+    <%= form.text_field :members_name %>
   </div>
 
   <div class="field">

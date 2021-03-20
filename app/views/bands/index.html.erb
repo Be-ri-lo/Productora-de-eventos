@@ -24,7 +24,7 @@
         <td><%= band.band_sort %></td>
         <td><%= band.concerts.count %></td>
         <td><%= band.concerts.pluck(:attendance).max %></td> 
-        <td><%= link_to 'Name Member', @crew %></td> 
+        <td><%= link_to 'Name Member', band_crews_path(band)  %></td> 
         <td><%= link_to 'Show', band %></td>
         <td><%= link_to 'Edit', edit_band_path(band) %></td>
         <td><%= link_to 'Destroy', band, method: :delete, data: { confirm: 'Are you sure?' } %></td>

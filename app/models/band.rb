@@ -6,6 +6,8 @@ class Band < ApplicationRecord
 
     enum band_sort: [:band, :soloist]
 
- 
+    def to_s
+        name
+    end
 end
 
